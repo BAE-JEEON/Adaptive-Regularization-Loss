@@ -1,4 +1,4 @@
-# Adaptive Regularization Loss for Improving Quality of  Pseudo-label in Class Imbalanced Semi-Supervised Learning
+## Adaptive Regularization Loss for Improving Quality of  Pseudo-label in Class Imbalanced Semi-Supervised Learning
 - 2022-2 독립 심화 학습
 - 지도 교수: 배성호
 - 주저자: 배제언
