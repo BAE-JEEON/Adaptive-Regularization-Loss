@@ -20,8 +20,12 @@
 
 ## 실험 결과
 
-CIFAR10-LT를 데이터셋으로 사용했고 라벨링 데이터의 비율은 20%로 설정하였다.
-또한 FixMatch 알고리즘을 SSL 알고리즘으로 사용하였다. 
+- 데이터셋:CIFAR10-LT
+- 라벨링 데이터의 비율: 20%
+- 사용한 준지도 학습 알고리즘: FixMatch
+- 모델: Wide ResNet-28-2
+- Threshold : 0.95
+- 기타: 다른 하이퍼파라미터 값은 FixMatch 논문에서 사용한 최적 값을 그대로 사용하였다.  
 
 - 불균형에 따른 손실함수별 성능 비교 (CIFAR10-LT)
 
@@ -33,11 +37,7 @@ CIFAR10-LT를 데이터셋으로 사용했고 라벨링 데이터의 비율은 2
 
 
 
-
-
-
 - 학습 수렴 ±50epoch의 Pseudo-label의 Confidence-Threshold의 평균 통과율 (APR)과 학습 효율도 (LER)
-
 
 
 
@@ -51,7 +51,7 @@ CIFAR10-LT를 데이터셋으로 사용했고 라벨링 데이터의 비율은 2
 
 ## 실행 방법
 ```
-python train.py --dataset cifar10 --num-labeled 4000 --arch wideresnet --batch-size 64 --lr 0.03 --expand-labels --seed 5 --label_ratio 20 --num_max 1000  --imb_ratio 100 --imbalancetype long --out results/New_loss  --threshold 0.99 --
+python train.py --dataset cifar10 --num-labeled 4000 --arch wideresnet --batch-size 64 --lr 0.03 --expand-labels --seed 5 --label_ratio 20 --num_max 1000  --imb_ratio 100 --imbalancetype long --out results/New_loss  --threshold 0.95 
 
 ```
 ## 레퍼 런스
