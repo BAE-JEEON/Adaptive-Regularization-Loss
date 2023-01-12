@@ -115,7 +115,7 @@ def regularization_loss(alpha: Optional[Sequence] = None,
             alpha = torch.tensor(alpha)
         alpha = alpha.to(device=device, dtype=dtype)
 
-    fl = FocalLoss(
+    fl = Regularization_Loss(
         alpha=alpha,
         reduction=reduction,
         ignore_index=ignore_index)
