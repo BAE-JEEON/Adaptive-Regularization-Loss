@@ -91,7 +91,7 @@ class Regularization_Loss(nn.Module):
         return loss
 
 
-def regularization_loss(alpha: Optional[Sequence] = None,,
+def regularization_loss(alpha: Optional[Sequence] = None,
                reduction: str = 'mean',
                ignore_index: int = -100,
                device='cpu',
