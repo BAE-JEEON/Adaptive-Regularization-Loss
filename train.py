@@ -352,16 +352,16 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
                     labeled_epoch += 1
                     labeled_trainloader.sampler.set_epoch(labeled_epoch)
                 labeled_iter = iter(labeled_trainloader)
-                inputs_x, targets_x = labeled_iter.next()
+                inputs_x, targets_x = next(labeled_iter)
 
             try:
-                (inputs_u_w, inputs_u_s), _ = unlabeled_iter.next()
+                (inputs_u_w, inputs_u_s), _ = next(unlabeled_iter)
             except:
                 if args.world_size > 1:
                     unlabeled_epoch += 1
                     unlabeled_trainloader.sampler.set_epoch(unlabeled_epoch)
                 unlabeled_iter = iter(unlabeled_trainloader)
-                (inputs_u_w, inputs_u_s), _ = unlabeled_iter.next()
+                (inputs_u_w, inputs_u_s), _ = next(unlabeled_iter)
 
             data_time.update(time.time() - end)
             batch_size = inputs_x.shape[0]
@@ -390,7 +390,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             mask = max_probs.ge(args.threshold).float()
 
             
-            Regularization_Loss = Regularization_Loss(alpha, reduction = 'none').cuda()
+            regularization_loss = Regularization_Loss(alpha, reduction = 'none').cuda()
             Lu = (regularization_loss(logits_u_s, targets_u) * mask).mean()
 
             # Lu = (F.cross_entropy(logits_u_s, targets_u,
